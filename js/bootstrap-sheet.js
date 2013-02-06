@@ -15,8 +15,6 @@
         function Sheet(element, options) {
             this.options = options;
             this.$element = $(element);
-
-            console.log('constructor');
         }
 
         Sheet.prototype = {
@@ -27,8 +25,6 @@
             },
 
             show: function () {
-                console.log('test');
-
                 var that = this;
                 var e = $.Event('show');
 
@@ -187,15 +183,7 @@
     })();
 
     /*
-     Private method
-     */
 
-    privateMethod = function () {
-        /* Method body here
-         */
-    };
-
-    /*
      Sheet definition
      */
 
