@@ -3,12 +3,15 @@
      Sheet class definition
      */
 
-    var Sheet;
+    var Sheet,
+        privateMethod;
 
     Sheet = (function () {
+
         /*
-         * Sheet constructor
+         Sheet constructor
          */
+
         function Sheet(element, options) {
             this.options = options;
             this.$element = $(element);
@@ -27,53 +30,37 @@
 
                 this.$element.trigger(e);
 
-                if (this.isShown || e.isDefaultPrevented()) {
-                  return;
-                }
+                if (this.isShown || e.isDefaultPrevented()) return;
 
                 this.isShown = true;
 
                 this.escape();
 
-                var transition = $.support.transition && that.$element.hasClass('fade');
+                this.backdrop(function () {
+                  var transition = $.support.transition && that.$element.hasClass('fade');
 
-                if (!that.$element.parent().length) {
-                  that.$element.appendTo(document.body); //don't move modals dom position
-                }
+                  if (!that.$element.parent().length) {
+                    that.$element.appendTo(document.body); //don't move modals dom position
+                  }
 
-                // Place the dialog just below product list header and show it
-                if (this.options.sheetParent) {
-                  // TODO : do this once
-                  // TODO : check if parent doesn't exist
-                  var $parent = $(this.options.sheetParent);
+                  that.$element
+                    .slideDown('fast');
 
-                  var sheetPosition = $parent.offset().top + $parent.height();
-                  that.$element.css('top', sheetPosition + 'px');
+                  if (transition) {
+                    that.$element[0].offsetWidth; // force reflow
+                  }
 
-                  // Compute horizontal position
-                  var margin = ($parent.width() - that.$element.width()) / 2;
-                  var leftPosition = $parent.offset().left + margin;
+                  that.$element
+                    .addClass('in')
+                    .attr('aria-hidden', false);
 
-                  that.$element.css('left', leftPosition + 'px');
-                }
+                  that.enforceFocus();
 
-                that.$element.slideDown('fast');
+                  transition ?
+                    that.$element.one($.support.transition.end, function () { that.$element.focus().trigger('shown'); }) :
+                    that.$element.focus().trigger('shown');
 
-                if (transition) {
-                  that.$element[0].offsetWidth; // force reflow
-                }
-
-                that.$element
-                  .addClass('in')
-                  .attr('aria-hidden', false);
-
-                that.enforceFocus();
-
-                transition ?
-                  that.$element.one($.support.transition.end, function () { that.$element.focus().trigger('shown'); }) :
-                  that.$element.focus().trigger('shown')
-                ;
-
+                });
               },
 
               hide: function (e) {
@@ -120,8 +107,14 @@
               hideSheet: function (that) {
                 this.$element
                   .hide()
-                  .trigger('hidden')
-                ;
+                  .trigger('hidden');
+
+                this.backdrop();
+              },
+
+              removeBackdrop: function () {
+                this.$backdrop.remove();
+                this.$backdrop = null;
               },
 
               enforceFocus: function () {
@@ -144,6 +137,44 @@
                 } else if (!this.isShown) {
                   this.$element.off('keyup.dismiss.sheet');
                 }
+              },
+
+              backdrop: function (callback) {
+                var that = this;
+                var animate = this.$element.hasClass('fade') ? 'fade' : '';
+
+                if (this.isShown && this.options.backdrop) {
+                  var doAnimate = $.support.transition && animate;
+
+                  this.$backdrop = $('<div class="sheet-backdrop ' + animate + '" />')
+                    .appendTo(document.body);
+
+                  this.$backdrop.click(
+                    this.options.backdrop == 'static' ?
+                      $.proxy(this.$element[0].focus, this.$element[0])
+                    : $.proxy(this.hide, this)
+                  );
+
+                  if (doAnimate) {
+                    this.$backdrop[0].offsetWidth; // force reflow
+                  }
+
+                  this.$backdrop.addClass('in');
+
+                  doAnimate ?
+                    this.$backdrop.one($.support.transition.end, callback) :
+                    callback();
+
+                } else if (!this.isShown && this.$backdrop) {
+                  this.$backdrop.removeClass('in');
+
+                  $.support.transition && this.$element.hasClass('fade') ?
+                    this.$backdrop.one($.support.transition.end, $.proxy(this.removeBackdrop, this)) :
+                    this.removeBackdrop();
+
+                } else if (callback) {
+                  callback();
+                }
               }
         };
 
@@ -152,15 +183,15 @@
     })();
 
     /*
-     * jQuery plugin definition
+
+     Sheet definition
      */
 
-    $.fn.sheet = function (option) {
+    $.fn.sheet = function (options) {
         return this.each(function () {
           var $this = $(this);
 
           var data = $this.data('sheet');
-
           var options = $.extend({}, $.fn.sheet.defaults, $this.data(), typeof option == 'object' && option);
 
           if (!data) {
@@ -176,6 +207,7 @@
     };
 
     $.fn.sheet.defaults = {
+        backdrop: false,
         keyboard: true,
         show: true
     };
