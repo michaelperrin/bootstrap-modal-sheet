@@ -34,6 +34,15 @@
 	padding-right: 15px;
 }
 
+.sheet .sheet-footer {
+    margin-top: 10px;
+    margin-bottom: 0;
+    padding: 10px 20px 10px;
+    text-align: right;
+    background-color: #f5f5f5;
+    border-top: 1px solid #e5e5e5;
+}
+
 .sheet-backdrop {
   position: fixed;
   top: 0;
@@ -41,15 +50,4 @@
   bottom: 0;
   left: 0;
   z-index: 1040;
-  background-color: #000000;
-}
-
-.sheet-backdrop.fade {
-  opacity: 0;
-}
-
-.sheet-backdrop,
-.sheet-backdrop.fade.in {
-  opacity: 0.8;
-  filter: alpha(opacity=80);
 }

@@ -57,6 +57,25 @@
                   that.$element.css('left', leftPosition + 'px');
                 }
 
+                // TODO : embed this in backdrop function?
+                var animate = this.$element.hasClass('fade') ? 'fade' : '';
+                var doAnimate = $.support.transition && animate;
+
+                this.$backdrop = $('<div class="sheet-backdrop ' + animate + '" />')
+                  .appendTo(document.body);
+
+                this.$backdrop.click(
+                  this.options.backdrop == 'static' ?
+                    $.proxy(this.$element[0].focus, this.$element[0])
+                  : $.proxy(this.hide, this)
+                );
+
+                if (doAnimate) this.$backdrop[0].offsetWidth // force reflow
+
+                this.$backdrop.addClass('in')
+
+                // END backdrop
+
                 that.$element.slideDown('fast');
 
                 if (transition) {
@@ -117,11 +136,23 @@
                 });
               },
 
-              hideSheet: function (that) {
+              hideSheet: function () {
+                var that = this;
+
                 this.$element
-                  .hide()
+                  .slideUp('fast')
                   .trigger('hidden')
                 ;
+
+                //this.backdrop(function () {
+                  that.removeBackdrop();
+                  that.$element.trigger('hidden');
+                //});
+              },
+
+              removeBackdrop: function () {
+                this.$backdrop.remove();
+                this.$backdrop = null;
               },
 
               enforceFocus: function () {
