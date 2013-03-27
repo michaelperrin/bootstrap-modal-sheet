@@ -8,7 +8,7 @@
   var Sheet = function (element, options) {
     this.options = options;
     this.$element = $(element)
-      .delegate('[data-dismiss="modal"]', 'click.dismiss.sheet', $.proxy(this.hide, this));
+      .delegate('[data-dismiss="sheet"]', 'click.dismiss.sheet', $.proxy(this.hide, this));
     this.options.remote && this.$element.find('.sheet-body').load(this.options.remote);
   };
 
@@ -119,7 +119,8 @@
 
       $.support.transition && this.$element.hasClass('fade') ?
         this.hideWithTransition() :
-        this.hideSheet();
+        this.hideSheet()
+      ;
     },
 
     hideWithTransition: function () {
