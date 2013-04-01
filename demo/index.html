@@ -64,9 +64,10 @@
     </tbody>
 </table>
 
-<a data-toggle="sheet" data-sheet-parent="#test thead" href="#sheet">Test</a>
+<a data-toggle="sheet" data-sheet-parent="#test thead" href="#sheet-test1">Add an entry</a>
+<a data-toggle="sheet" data-sheet-parent="#test thead" href="#sheet-test2">Information</a>
 
-<div class="sheet hide fade" id="sheet">
+<div class="sheet hide fade" id="sheet-test1">
     <div class="sheet-body">
         <form action="" class="form-horizontal">
             <label for="name" class="control-label">Choose a name</label>
@@ -81,6 +82,20 @@
         <a href="#" class="btn btn-primary" id="add-to-list">Add to list</a>
     </div>
 </div>
+
+
+<div class="sheet hide fade" id="sheet-test2">
+    <div class="sheet-body">
+        <p>
+            Are you sure you want to remove a line?
+        </p>
+    </div>
+
+    <div class="sheet-footer">
+        <a href="#" class="btn" data-dismiss="sheet" aria-hidden="true">Cancel</a>
+    </div>
+</div>
+
 
 <script>
     $(document).ready(function() {
