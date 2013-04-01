@@ -11,9 +11,6 @@
 
 .sheet {
 	position: absolute;
-	top: 192px;
-	left: 300px;
-
 	z-index: 1050;
 
 	width: 600px;
