@@ -12,7 +12,6 @@ They have several advantages:
 
 ## Example of use
 
-    ```html
     <div id="info-box">
         ...
     </div>
