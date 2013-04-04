@@ -96,8 +96,6 @@
     </div>
 </div>
 
-<button class="btn show-modal-sheet">Show modal 1</button>
-
 <script>
     $(document).ready(function() {
         $('#add-to-list').on('click', function() {
@@ -111,8 +109,6 @@
             $tr.appendTo($('#test tbody'));
             $('#sheet').sheet('hide');
         });
-
-        $('.show-modal-sheet').on('click', function() { $('#sheet-test1').sheet('show'); });
     });
 </script>
 
