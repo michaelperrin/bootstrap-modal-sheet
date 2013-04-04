@@ -64,8 +64,8 @@
     </tbody>
 </table>
 
-<a data-toggle="sheet" data-sheet-parent="#test thead" href="#sheet-test1">Add an entry</a>
-<a data-toggle="sheet" data-sheet-parent="#test thead" href="#sheet-test2">Information</a>
+<a data-toggle="sheet" data-sheet-parent="#test thead" href="#sheet-test1" class="btn btn-success">Add an entry</a>
+<a data-toggle="sheet" data-sheet-parent="#test thead" href="#sheet-test2" class="btn">Information</a>
 
 <div class="sheet hide fade" id="sheet-test1">
     <div class="sheet-body">
@@ -96,6 +96,7 @@
     </div>
 </div>
 
+<button class="btn show-modal-sheet">Show modal 1</button>
 
 <script>
     $(document).ready(function() {
@@ -110,6 +111,8 @@
             $tr.appendTo($('#test tbody'));
             $('#sheet').sheet('hide');
         });
+
+        $('.show-modal-sheet').on('click', function() { $('#sheet-test1').sheet('show'); });
     });
 </script>
 
