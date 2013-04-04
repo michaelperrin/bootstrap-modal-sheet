@@ -10,6 +10,14 @@ They have several advantages:
 * They have a scope: user interaction is required in the current area rather than the whole web page.
 * They have a context. They appear *from* a chosen header
 
+## Demo
+
+A demo has been set up at this address: http://demo.michaelperrin.fr/bootstrap-modal-sheet/demo/index.html
+
+This shows a table with 2 modal sheet dialogs attached to it:
+
+* one for adding a row to the table
+* one that shows an information text.
 
 ## Usage example
 
@@ -46,3 +54,11 @@ Create an info box from which a modal sheet will appear when clicking on the "Sh
     </div>
 </div>
 ```
+
+## Events
+
+Events of the standard Twitter Bootstrap modal are available as well for modal sheets (see http://twitter.github.com/bootstrap/javascript.html#modals):
+* show
+* shown
+* hide
+* hidden
