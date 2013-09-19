@@ -1,3 +1,10 @@
+/**
+ * Bootstrap modal sheet
+ * 
+ * Author: Michaël Perrin
+ * https://github.com/michaelperrin/bootstrap-modal-sheet
+ */
+ 
 (function () {
   "use strict";
 
