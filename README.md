@@ -42,7 +42,7 @@ Create an info box from which a modal sheet will appear when clicking on the "Sh
 
 <a data-toggle="sheet" data-sheet-parent="#info-box" href="#mySheet">Show info</a>
 
-<div class="sheet hide fade" id="mySheet">
+<div class="sheet fade" id="mySheet">
     <div class="sheet-body">
         <p>
             I'm an information modal sheet.
@@ -50,7 +50,7 @@ Create an info box from which a modal sheet will appear when clicking on the "Sh
     </div>
 
     <div class="sheet-footer">
-        <a href="#" class="btn" data-dismiss="sheet" aria-hidden="true">Cancel</a>
+        <a href="#" class="btn btn-default" data-dismiss="sheet" aria-hidden="true">Cancel</a>
     </div>
 </div>
 ```

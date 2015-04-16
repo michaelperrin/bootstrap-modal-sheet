@@ -6,7 +6,7 @@
     <script src="http://code.jquery.com/jquery-1.9.1.min.js" type="text/javascript"></script>
     <script src="../js/bootstrap-sheet.js" type="text/javascript"></script>
     <link href="../css/bootstrap-sheet.css" type="text/css" rel="stylesheet">
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         #test {
@@ -65,26 +65,24 @@
 </table>
 
 <a data-toggle="sheet" data-sheet-parent="#test thead" href="#sheet-test1" class="btn btn-success">Add an entry</a>
-<a data-toggle="sheet" data-sheet-parent="#test thead" href="#sheet-test2" class="btn">Information</a>
+<a data-toggle="sheet" data-sheet-parent="#test thead" href="#sheet-test2" class="btn btn-default">Information</a>
 
-<div class="sheet hide fade" id="sheet-test1">
+<div class="sheet fade" id="sheet-test1">
     <div class="sheet-body">
-        <form action="" class="form-horizontal">
-            <label for="name" class="control-label">Choose a name</label>
-            <div class="controls">
-            <input type="text" id="name">
-            </div>
+        <form>
+            <label for="name">Choose a name</label>
+            <input type="text" id="name" class="form-control">
         </form>
     </div>
 
     <div class="sheet-footer">
-        <a href="#" class="btn" data-dismiss="sheet" aria-hidden="true">Cancel</a>
+        <a href="#" class="btn btn-default" data-dismiss="sheet" aria-hidden="true">Cancel</a>
         <a href="#" class="btn btn-primary" id="add-to-list">Add to list</a>
     </div>
 </div>
 
 
-<div class="sheet hide fade" id="sheet-test2">
+<div class="sheet fade" id="sheet-test2">
     <div class="sheet-body">
         <p>
             This is a table.
@@ -92,7 +90,7 @@
     </div>
 
     <div class="sheet-footer">
-        <a href="#" class="btn" data-dismiss="sheet" aria-hidden="true">Ok</a>
+        <a href="#" class="btn btn-default" data-dismiss="sheet" aria-hidden="true">Ok</a>
     </div>
 </div>
 
