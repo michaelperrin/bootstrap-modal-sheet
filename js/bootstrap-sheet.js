@@ -62,11 +62,6 @@
         this.$backdrop.addClass('in');
       }
 
-      transition ?
-        this.$element.slideDown('fast', function() { that.$element.focus().trigger('shown'); }) :
-        this.$element.show().focus().trigger('shown')
-      ;
-
       this.$element
         .addClass('in')
         .attr('aria-hidden', false)
@@ -124,9 +119,6 @@
     },
 
     hideSheet: function () {
-      var transition = this.$element.hasClass('fade');
-
-      transition ? this.$element.slideUp('fast') : this.$element.hide();
       this.removeBackdrop();
       this.$element.trigger('hidden');
     },
