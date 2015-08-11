@@ -19,6 +19,16 @@ This shows a table with 2 modal sheet dialogs attached to it:
 * one for adding a row to the table
 * one that shows an information text.
 
+## Install
+
+### Bower
+
+    bower install bootstrap-modal-sheet
+
+### Download
+
+https://github.com/michaelperrin/bootstrap-modal-sheet/archive/v1.0.0.tar.gz
+
 ## Usage example
 
 Include CSS:
