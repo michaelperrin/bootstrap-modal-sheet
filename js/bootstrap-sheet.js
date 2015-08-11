@@ -43,7 +43,7 @@
       var transition = this.$element.hasClass('fade');
 
       if (!this.$element.parent().length) {
-        this.$element.appendTo(document.body); //don't move modals dom position
+        this.$element.appendTo(document.body); // don't move modals dom position
       }
 
       this.placeBelowParent();
@@ -181,10 +181,10 @@
   * ============== */
 
   $(document).on('click.sheet.data-api', '[data-toggle="sheet"]', function (e) {
-    var $this = $(this);
-    var href = $this.attr('href');
-    var $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))); //strip for ie7
-    var option = $target.data('sheet') ? 'toggle' : $.extend({ remote:!/#/.test(href) && href }, $target.data(), $this.data());
+    var $this   = $(this);
+    var href    = $this.attr('href');
+    var $target = $($this.attr('data-target') || href);
+    var option  = $target.data('sheet') ? 'toggle' : $.extend({ remote:!/#/.test(href) && href }, $target.data(), $this.data());
 
     e.preventDefault();
 
