@@ -64,10 +64,10 @@
     </tbody>
 </table>
 
-<a data-toggle="sheet" data-sheet-parent="#test thead" href="#sheet-test1" class="btn btn-success">Add an entry</a>
-<a data-toggle="sheet" data-sheet-parent="#test thead" href="#sheet-test2" class="btn btn-default">Information</a>
+<a data-toggle="sheet" href="#sheet-test1" class="btn btn-success">Add an entry</a>
+<a data-toggle="sheet" href="#sheet-test2" class="btn btn-default">Information</a>
 
-<div class="sheet slide" id="sheet-test1">
+<div class="sheet slide" id="sheet-test1" data-sheet-parent="#test thead">
     <div class="sheet-content">
         <div class="sheet-body">
             <form>
@@ -84,7 +84,7 @@
 </div>
 
 
-<div class="sheet slide" id="sheet-test2">
+<div class="sheet slide" id="sheet-test2" data-sheet-parent="#test thead">
     <div class="sheet-content">
         <div class="sheet-body">
             <p>

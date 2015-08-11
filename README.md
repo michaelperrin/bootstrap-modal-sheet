@@ -40,9 +40,9 @@ Create an info box from which a modal sheet will appear when clicking on the "Sh
     ...
 </div>
 
-<a data-toggle="sheet" data-sheet-parent="#info-box" href="#mySheet">Show info</a>
+<a data-toggle="sheet" href="#mySheet">Show info</a>
 
-<div class="sheet slide" id="mySheet">
+<div class="sheet slide" id="mySheet" data-sheet-parent="#info-box">
     <div class="sheet-content">
         <div class="sheet-body">
             <p>
