@@ -6,7 +6,10 @@
     "Michaël Perrin <michael.perrin84@gmail.com>"
   ],
   "description": "Javascript modal sheets",
-  "main": "js/bootstrap-sheet.js",
+  "main": [
+    "css/bootstrap-sheet.css",
+    "js/bootstrap-sheet.js"
+  ],
   "keywords": [
     "modal sheet",
     "sheet",
