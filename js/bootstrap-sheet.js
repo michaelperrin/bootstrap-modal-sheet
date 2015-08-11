@@ -82,13 +82,13 @@
     },
 
     placeBelowParent: function() {
-      if ( ! this.options.sheetParent) {
+      if (!this.options.sheetParent) {
         return;
       }
 
       var $parent = $(this.options.sheetParent);
 
-      if ( ! $parent) {
+      if (!$parent) {
         return;
       }
 
@@ -142,7 +142,7 @@
     },
 
     removeBackdrop: function () {
-      if ( ! this.options.backdrop) {
+      if (!this.options.backdrop) {
         return;
       }
 
