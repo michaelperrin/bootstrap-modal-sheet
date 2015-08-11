@@ -19,6 +19,12 @@
     this.options.remote && this.$element.find('.sheet-body').load(this.options.remote);
   };
 
+  Sheet.DEFAULTS = {
+    keyboard: true,
+    show: true,
+    backdrop: true
+  };
+
   Sheet.prototype = {
     constructor: Sheet,
 
@@ -146,16 +152,16 @@
   };
 
   /*
-   * jQuery Sheet plugin definition
+   * jQuery Modal Sheet plugin definition
    */
 
-  $.fn.sheet = function (option) {
+  function Plugin(option, _relatedTarget) {
     return this.each(function () {
       var $this = $(this);
 
       var data = $this.data('sheet');
 
-      var options = $.extend({}, $.fn.sheet.defaults, $this.data(), typeof option == 'object' && option);
+      var options = $.extend({}, Sheet.DEFAULTS, $this.data(), typeof option == 'object' && option);
 
       if (!data) {
         $this.data('sheet', (data = new Sheet(this, options)));
@@ -167,14 +173,11 @@
         data.show();
       }
     });
-  };
+  }
 
-  $.fn.sheet.defaults = {
-    keyboard: true,
-    show: true,
-    backdrop: true
-  };
+  var old = $.fn.sheet
 
+  $.fn.sheet             = Plugin;
   $.fn.sheet.Constructor = Sheet;
 
  /* SHEET DATA-API
@@ -184,14 +187,23 @@
     var $this   = $(this);
     var href    = $this.attr('href');
     var $target = $($this.attr('data-target') || href);
-    var option  = $target.data('sheet') ? 'toggle' : $.extend({ remote:!/#/.test(href) && href }, $target.data(), $this.data());
+    var option  = $target.data('sheet') ? 'toggle' : $.extend($target.data(), $this.data());
 
-    e.preventDefault();
+    if ($this.is('a')) {
+      e.preventDefault();
+    }
 
-    $target
-      .sheet(option)
-      .one('hide', function () {
-        $this.focus();
+    $target.one('show.bs.sheet', function (showEvent) {
+      if (showEvent.isDefaultPrevented()) {
+         // only register focus restorer if modal will actually get shown
+        return;
+      }
+
+      $target.one('hidden.bs.sheet', function () {
+        $this.is(':visible') && $this.trigger('focus');
       });
+    });
+
+    Plugin.call($target, option, this);
   });
 }).call(this);
