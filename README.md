@@ -69,7 +69,7 @@ Create an info box from which a modal sheet will appear when clicking on the "Sh
 
 ## Methods
 
-### `.sheet('show')`
+**`.sheet('show')`**
 
 Manually opens a modal sheet.
 
@@ -77,7 +77,7 @@ Example:
 
     $('#myModal').sheet('show');
 
-### `.sheet('hide')`
+**`.sheet('hide')`**
 
 Manually closes a modal sheet.
 
