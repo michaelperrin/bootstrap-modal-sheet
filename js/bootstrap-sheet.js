@@ -29,11 +29,11 @@
     constructor: Sheet,
 
     toggle: function () {
-      return this[!this.isShown ? 'show' : 'hide']();
+      return this.isShown ? this.hide() : this.show();
     },
 
     show: function () {
-      var e = $.Event('show');
+      var e = $.Event('show.bs.sheet');
       var that = this;
 
       this.$element.trigger(e);
@@ -67,6 +67,12 @@
 
         this.$backdrop.addClass('in');
       }
+
+      var e = $.Event('shown.bs.sheet');
+
+      this.$element.one('transitionend', function() {
+        that.$element.trigger(e);
+      });
 
       this.$element
         .addClass('in')
@@ -102,7 +108,7 @@
 
       var that = this;
 
-      e = $.Event('hide');
+      e = $.Event('hide.bs.sheet');
 
       this.$element.trigger(e);
 
@@ -115,6 +121,12 @@
       this.escape();
 
       $(document).off('focusin.sheet');
+
+      var e = $.Event('hidden.bs.sheet');
+
+      this.$element.one('transitionend', function() {
+        that.$element.trigger(e);
+      });
 
       this.$element
         .removeClass('in')
@@ -155,7 +167,7 @@
    * jQuery Modal Sheet plugin definition
    */
 
-  function Plugin(option, _relatedTarget) {
+  function Plugin(option) {
     return this.each(function () {
       var $this = $(this);
 

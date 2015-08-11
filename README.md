@@ -59,8 +59,9 @@ Create an info box from which a modal sheet will appear when clicking on the "Sh
 
 ## Events
 
-Events of the standard Twitter Bootstrap modal are available as well for modal sheets (see http://twitter.github.com/bootstrap/javascript.html#modals):
-* show
-* shown
-* hide
-* hidden
+Events of the standard Bootstrap modal are available as well for modal sheets (see http://getbootstrap.com/javascript/#modals-events):
+
+* `show.bs.sheet`: Fired immediately when the `show` instance method is called.
+* `shown.bs.sheet`: (IE10+ and all other browsers) Fired when the modal sheet has been made visible to the user.
+* `hide.bs.sheet`: Fired immediately when the `hide` instance method has been called.
+* `hidden.bs.sheet`: Fired when the modal has finished being hidden from the user.
