@@ -57,6 +57,25 @@ Create an info box from which a modal sheet will appear when clicking on the "Sh
 </div>
 ```
 
+## Methods
+
+### `.sheet('show')`
+
+Manually opens a modal sheet.
+
+Example:
+
+    $('#myModal').sheet('show');
+
+### `.sheet('hide')`
+
+Manually closes a modal sheet.
+
+Example:
+
+    $('#myModal').sheet('hide');
+
+
 ## Events
 
 Events of the standard Bootstrap modal are available as well for modal sheets (see http://getbootstrap.com/javascript/#modals-events):
